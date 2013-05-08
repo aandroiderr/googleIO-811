@@ -390,8 +390,9 @@ containing a value of this type.
         public static final int main=0x7f090000;
     }
     public static final class string {
-        public static final int accounts=0x7f05002d;
-        public static final int action_settings=0x7f05002b;
+        public static final int accounts=0x7f05002f;
+        public static final int action_settings=0x7f05002c;
+        public static final int app_id=0x7f05002b;
         public static final int app_name=0x7f05002a;
         /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=70] 
          */
@@ -480,15 +481,16 @@ containing a value of this type.
         find the service-side assets. [CHAR LIMIT=25] 
          */
         public static final int common_signin_button_text_long=0x7f05000d;
-        public static final int dialog_merge_switch=0x7f050031;
-        public static final int dialog_switch_cancel=0x7f050034;
-        public static final int do_cancel=0x7f050035;
-        public static final int do_merge=0x7f050032;
-        public static final int do_switch=0x7f050033;
-        public static final int firstrun=0x7f050030;
-        public static final int signin=0x7f05002c;
-        public static final int signinmessage=0x7f05002e;
-        public static final int welcome=0x7f05002f;
+        public static final int dialog_merge_switch=0x7f050033;
+        public static final int dialog_switch_cancel=0x7f050036;
+        public static final int do_cancel=0x7f050037;
+        public static final int do_merge=0x7f050034;
+        public static final int do_switch=0x7f050035;
+        public static final int facebooksignin=0x7f05002e;
+        public static final int firstrun=0x7f050032;
+        public static final int signin=0x7f05002d;
+        public static final int signinmessage=0x7f050030;
+        public static final int welcome=0x7f050031;
     }
     public static final class style {
         /** 

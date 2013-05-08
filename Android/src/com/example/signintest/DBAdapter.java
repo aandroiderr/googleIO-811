@@ -26,16 +26,16 @@ public class DBAdapter {
 	
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 		public DatabaseHelper(Context context) {
-			super(context, "appdb", null, 1);
+			super(context, "appdb", null, 2);
 		}
 		
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			try {
-				db.execSQL("CREATE TABLE " + USER_TABLE + 
+				db.execSQL("CREATE TABLE " + USER_TABLE + " (" +
 						KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
 						KEY_NAME + " VARCHAR )");
-				db.execSQL("CREATE TABLE " + IDP_TABLE + 
+				db.execSQL("CREATE TABLE " + IDP_TABLE + " (" +
 						KEY_PROVIDER + " VARCHAR," +
 						KEY_USER_ID + " INTEGER," +
 						KEY_PROVIDER_ID + " VARCHAR )"); 

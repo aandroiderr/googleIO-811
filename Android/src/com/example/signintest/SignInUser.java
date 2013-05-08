@@ -17,6 +17,12 @@ public class SignInUser {
 	
 	public SignInUser(DBAdapter db) {
 		mDb = db;
+		mDb.open();
+		mProviderData = new HashMap<Provider,Object>();
+	}
+	
+    protected void finalize( ) throws Throwable {
+    	mDb.close();
 	}
 	
 	public void setProviderData(Provider provider, Object user) {
@@ -31,6 +37,11 @@ public class SignInUser {
 				mIsNew = false;
 			}
 		}	
+	}
+	
+	public void removeProvider(Provider provider) {
+		mDb.deleteProviderUser(provider, this);
+		mProviderData.remove(provider);
 	}
 	
 	public Object getProviderData(Provider provider) {

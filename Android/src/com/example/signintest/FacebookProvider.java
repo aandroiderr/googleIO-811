@@ -35,13 +35,13 @@ public class FacebookProvider implements
 	}
 
 	@Override
-	public void signOut(Object user) {
-		// TOOD: How do we log out? Equivalent to clear default acct.
+	public void signOut(SignInUser user) {
+		Session.getActiveSession().closeAndClearTokenInformation();
 	}
 
 	@Override
-	public void disconnect(Object user) {
-		// TODO: Is there something analogous to disconnect (revoke access?)
+	public void disconnect(SignInUser user) {
+		signOut(user);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class FacebookProvider implements
 	@Override
 	public boolean handleOnActivityResult(int requestCode, int resultCode,
 			Intent data) {
-		return false;
+		return Session.getActiveSession().onActivityResult(mManager.getActivity(), requestCode, resultCode, data);
 	}
 
 	@Override

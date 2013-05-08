@@ -29,6 +29,10 @@ public class GooglePlusProvider implements
     // The request specified in signIn or INVALID_REQUEST_CODE if not signing in.
     private int mRequestCode;
 	
+    public GooglePlusProvider() {
+    	mRequestCode = INVALID_REQUEST_CODE;
+    }
+    
 	@Override
 	public String getId() {
 		return GooglePlusProvider.ID;
@@ -73,7 +77,7 @@ public class GooglePlusProvider implements
 	}
 
 	@Override
-	public void signOut(Object user) {
+	public void signOut(SignInUser user) {
 		if (mPlusClient.isConnected()) {
             mPlusClient.clearDefaultAccount();
         }
@@ -81,7 +85,7 @@ public class GooglePlusProvider implements
 	}
 
 	@Override
-	public void disconnect(Object user) {
+	public void disconnect(SignInUser user) {
 		if (mPlusClient.isConnected()) {
             mPlusClient.revokeAccessAndDisconnect(this);
         }

@@ -9,7 +9,7 @@ public interface Provider {
 	public void detachFragment();
 	public void trySilentAuthentication();
 	public void signIn();
-	public void signOut(Object user);
-	public void disconnect(Object user);
+	public void signOut(SignInUser user);
+	public void disconnect(SignInUser user);
 	public boolean handleOnActivityResult(int requestCode, int resultCode, Intent data);
 }

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SignInTest</string>
+    <string name="app_name">Sign In Test</string>
+    <string name="app_id">6397850738</string>
     <string name="action_settings">Settings</string>
     <string name="signin">Sign In</string>
-	<string name="accounts">Sign In</string>
+    <string name="facebooksignin">Sign In With Facebook</string>
+	<string name="accounts">Settings</string>
 	<string name="signinmessage">Please Sign In</string>
 	<string name="welcome">Welcome %s</string>
 	<string name="firstrun">Thanks for using our app!</string>

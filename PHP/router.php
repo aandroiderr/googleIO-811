@@ -19,7 +19,9 @@ $authenticator->addProvider($github);
 /* Routing */
 $controller = null;
 $url = $_SERVER['PHP_SELF'];
-if(strpos($url, '/callback') === 0) {
+if(strpos($url, '/static/') === 0)  {
+  return false;
+} else if(strpos($url, '/callback') === 0) {
   require_once "controllers/callback.php";
   $controller = new CallbackController($authenticator);
 } else if(strpos($url, '/login') === 0) {

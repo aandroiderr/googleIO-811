@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -40,7 +41,6 @@ public class SignInFragment extends Fragment {
     // A handler to post callbacks (rather than call them in a potentially reentrant way.)
     private Handler mHandler;
 
-	
 	/**
      * Listener interface for sign in events.  Activities hosting a SignInFragment
      * must implement this.
@@ -152,7 +152,6 @@ public class SignInFragment extends Fragment {
 			mProviders = new HashMap<String,Provider>();
 			addProviders(ProviderUtil.getProviders());
 		}
-		testProviders();
 	}
 	
 	public void onDestroy() {
@@ -175,6 +174,7 @@ public class SignInFragment extends Fragment {
 			mProviders.put(pId, provider);
 			provider.setFragment(this);
 		}
+		testProviders();
 	}
 	
 	public void testProviders() {
@@ -189,12 +189,13 @@ public class SignInFragment extends Fragment {
 	
 	public void signOut(String provider) {
 		Provider p = mProviders.get(provider);
-		p.signOut(mUser.getProviderData(p));
+		p.signOut(mUser);
 	}
 	
 	public void disconnect(String provider) {
 		Provider p = mProviders.get(provider);
-		p.disconnect(mUser.getProviderData(p));
+		p.disconnect(mUser);
+		mUser.removeProvider(p);
 	}
 	
 	/**
@@ -224,5 +225,17 @@ public class SignInFragment extends Fragment {
 			}
 		}
 		mHandler.sendEmptyMessage(SignInClientFragmentHandler.WHAT_STATUS_CHANGE);
+	}
+	
+	public SignInUser getUser() {
+		return mUser;
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    for(Provider provider : mProviders.values()) {
+	    	if( provider.handleOnActivityResult(requestCode, resultCode, data)) {
+	    		return;
+	    	}
+	    }
 	}
 }

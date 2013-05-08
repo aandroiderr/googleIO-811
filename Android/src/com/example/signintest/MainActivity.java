@@ -5,7 +5,6 @@ import com.example.signintest.SignInFragment.SignInStatusListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -23,13 +22,6 @@ public class MainActivity extends FragmentActivity
 		setContentView(R.layout.activity_main);
 
         mSignInFragment = SignInFragment.getSignInFragment(this);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
 	}
 
 	@Override
@@ -68,7 +60,9 @@ public class MainActivity extends FragmentActivity
 	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO: get the callback from the activity, and chek the user.
+		super.onActivityResult(requestCode, resultCode, data);
+		mSignInFragment.onActivityResult(requestCode, resultCode, data);
+		onStatusChange(mSignInFragment.getUser());
 	}
 
 }
