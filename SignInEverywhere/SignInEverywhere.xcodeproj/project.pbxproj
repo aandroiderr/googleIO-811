@@ -1,0 +1,532 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EFA0E861170F231A00C58A71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA0E860170F231A00C58A71 /* UIKit.framework */; };
+		EFA0E863170F231A00C58A71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA0E862170F231A00C58A71 /* Foundation.framework */; };
+		EFA0E865170F231A00C58A71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA0E864170F231A00C58A71 /* CoreGraphics.framework */; };
+		EFA0E86B170F231A00C58A71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EFA0E869170F231A00C58A71 /* InfoPlist.strings */; };
+		EFA0E86D170F231A00C58A71 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA0E86C170F231A00C58A71 /* main.m */; };
+		EFA0E871170F231A00C58A71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA0E870170F231A00C58A71 /* AppDelegate.m */; };
+		EFA0E873170F231A00C58A71 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA0E872170F231A00C58A71 /* Default.png */; };
+		EFA0E875170F231A00C58A71 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA0E874170F231A00C58A71 /* Default@2x.png */; };
+		EFA0E877170F231A00C58A71 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA0E876170F231A00C58A71 /* Default-568h@2x.png */; };
+		EFA0E87A170F231A00C58A71 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA0E879170F231A00C58A71 /* LoginViewController.m */; };
+		EFA0E87D170F231A00C58A71 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA0E87B170F231A00C58A71 /* LoginViewController.xib */; };
+		EFA0E884170F254300C58A71 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA0E883170F254300C58A71 /* FacebookSDK.framework */; };
+		EFA0E8861711941E00C58A71 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EFA0E8851711941E00C58A71 /* FacebookSDKResources.bundle */; };
+		EFA0E8881711943C00C58A71 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA0E8871711943C00C58A71 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EFA0E88A1711944100C58A71 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA0E8891711944100C58A71 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EFA0E88C1711944600C58A71 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA0E88B1711944600C58A71 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EFA0E88F171D869D00C58A71 /* Authenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA0E88E171D869D00C58A71 /* Authenticator.m */; };
+		EFD5F56517243357009E6E13 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5F56317243357009E6E13 /* MainViewController.m */; };
+		EFD5F56617243357009E6E13 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFD5F56417243357009E6E13 /* MainViewController.xib */; };
+		EFD5F569172436C9009E6E13 /* FacebookProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5F568172436C9009E6E13 /* FacebookProvider.m */; };
+		EFD5F56C172436D6009E6E13 /* GooglePlusProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5F56B172436D6009E6E13 /* GooglePlusProvider.m */; };
+		EFD5F56F172436E4009E6E13 /* TwitterProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5F56E172436E3009E6E13 /* TwitterProvider.m */; };
+		EFD5F57217244236009E6E13 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5F57117244236009E6E13 /* User.m */; };
+		EFD5F68717380134009E6E13 /* AccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5F68617380134009E6E13 /* AccountView.m */; };
+		EFD5F68C1739F0B1009E6E13 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD5F6891739F0B1009E6E13 /* GoogleOpenSource.framework */; };
+		EFD5F68D1739F0B1009E6E13 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD5F68A1739F0B1009E6E13 /* GooglePlus.framework */; };
+		EFD5F68E1739F0B1009E6E13 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EFD5F68B1739F0B1009E6E13 /* GooglePlus.bundle */; };
+		EFD5F6901739F0EF009E6E13 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD5F68F1739F0EF009E6E13 /* CoreTelephony.framework */; };
+		EFD5F6921739F0F5009E6E13 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD5F6911739F0F5009E6E13 /* Security.framework */; };
+		EFD5F6941739F105009E6E13 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD5F6931739F105009E6E13 /* SystemConfiguration.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EFA0E85D170F231A00C58A71 /* SignInEverywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignInEverywhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFA0E860170F231A00C58A71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EFA0E862170F231A00C58A71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EFA0E864170F231A00C58A71 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EFA0E868170F231A00C58A71 /* SignInEverywhere-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SignInEverywhere-Info.plist"; sourceTree = "<group>"; };
+		EFA0E86A170F231A00C58A71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EFA0E86C170F231A00C58A71 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EFA0E86E170F231A00C58A71 /* SignInEverywhere-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SignInEverywhere-Prefix.pch"; sourceTree = "<group>"; };
+		EFA0E86F170F231A00C58A71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EFA0E870170F231A00C58A71 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EFA0E872170F231A00C58A71 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		EFA0E874170F231A00C58A71 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		EFA0E876170F231A00C58A71 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		EFA0E878170F231A00C58A71 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		EFA0E879170F231A00C58A71 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		EFA0E87C170F231A00C58A71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LoginViewController.xib; sourceTree = "<group>"; };
+		EFA0E883170F254300C58A71 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		EFA0E8851711941E00C58A71 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		EFA0E8871711943C00C58A71 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		EFA0E8891711944100C58A71 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		EFA0E88B1711944600C58A71 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		EFA0E88D171D869D00C58A71 /* Authenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Authenticator.h; sourceTree = "<group>"; };
+		EFA0E88E171D869D00C58A71 /* Authenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Authenticator.m; sourceTree = "<group>"; };
+		EFD5F56217243357009E6E13 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		EFD5F56317243357009E6E13 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		EFD5F56417243357009E6E13 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		EFD5F567172436C9009E6E13 /* FacebookProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookProvider.h; sourceTree = "<group>"; };
+		EFD5F568172436C9009E6E13 /* FacebookProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookProvider.m; sourceTree = "<group>"; };
+		EFD5F56A172436D6009E6E13 /* GooglePlusProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GooglePlusProvider.h; sourceTree = "<group>"; };
+		EFD5F56B172436D6009E6E13 /* GooglePlusProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GooglePlusProvider.m; sourceTree = "<group>"; };
+		EFD5F56D172436E3009E6E13 /* TwitterProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterProvider.h; sourceTree = "<group>"; };
+		EFD5F56E172436E3009E6E13 /* TwitterProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterProvider.m; sourceTree = "<group>"; };
+		EFD5F57017244236009E6E13 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		EFD5F57117244236009E6E13 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		EFD5F68517380134009E6E13 /* AccountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountView.h; sourceTree = "<group>"; };
+		EFD5F68617380134009E6E13 /* AccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountView.m; sourceTree = "<group>"; };
+		EFD5F6891739F0B1009E6E13 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
+		EFD5F68A1739F0B1009E6E13 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
+		EFD5F68B1739F0B1009E6E13 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
+		EFD5F68F1739F0EF009E6E13 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		EFD5F6911739F0F5009E6E13 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EFD5F6931739F105009E6E13 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EFA0E85A170F231A00C58A71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFD5F6941739F105009E6E13 /* SystemConfiguration.framework in Frameworks */,
+				EFD5F6921739F0F5009E6E13 /* Security.framework in Frameworks */,
+				EFD5F6901739F0EF009E6E13 /* CoreTelephony.framework in Frameworks */,
+				EFA0E88C1711944600C58A71 /* Social.framework in Frameworks */,
+				EFA0E88A1711944100C58A71 /* Accounts.framework in Frameworks */,
+				EFA0E8881711943C00C58A71 /* AdSupport.framework in Frameworks */,
+				EFA0E861170F231A00C58A71 /* UIKit.framework in Frameworks */,
+				EFA0E863170F231A00C58A71 /* Foundation.framework in Frameworks */,
+				EFA0E865170F231A00C58A71 /* CoreGraphics.framework in Frameworks */,
+				EFA0E884170F254300C58A71 /* FacebookSDK.framework in Frameworks */,
+				EFD5F68C1739F0B1009E6E13 /* GoogleOpenSource.framework in Frameworks */,
+				EFD5F68D1739F0B1009E6E13 /* GooglePlus.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EFA0E854170F231A00C58A71 = {
+			isa = PBXGroup;
+			children = (
+				EFD5F6931739F105009E6E13 /* SystemConfiguration.framework */,
+				EFD5F6911739F0F5009E6E13 /* Security.framework */,
+				EFD5F68F1739F0EF009E6E13 /* CoreTelephony.framework */,
+				EFA0E88B1711944600C58A71 /* Social.framework */,
+				EFA0E8891711944100C58A71 /* Accounts.framework */,
+				EFA0E8871711943C00C58A71 /* AdSupport.framework */,
+				EFA0E867170F231A00C58A71 /* Supporting Files */,
+				EFD5F5731727192B009E6E13 /* GooglePlus */,
+				EFA0E866170F231A00C58A71 /* SignInEverywhere */,
+				EFA0E85F170F231A00C58A71 /* Frameworks */,
+				EFA0E85E170F231A00C58A71 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EFA0E85E170F231A00C58A71 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EFA0E85D170F231A00C58A71 /* SignInEverywhere.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EFA0E85F170F231A00C58A71 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFA0E883170F254300C58A71 /* FacebookSDK.framework */,
+				EFA0E860170F231A00C58A71 /* UIKit.framework */,
+				EFA0E862170F231A00C58A71 /* Foundation.framework */,
+				EFA0E864170F231A00C58A71 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EFA0E866170F231A00C58A71 /* SignInEverywhere */ = {
+			isa = PBXGroup;
+			children = (
+				EFD5F68417376020009E6E13 /* Authentication */,
+				EFA0E86F170F231A00C58A71 /* AppDelegate.h */,
+				EFA0E870170F231A00C58A71 /* AppDelegate.m */,
+				EFA0E878170F231A00C58A71 /* LoginViewController.h */,
+				EFA0E879170F231A00C58A71 /* LoginViewController.m */,
+				EFA0E87B170F231A00C58A71 /* LoginViewController.xib */,
+				EFD5F56217243357009E6E13 /* MainViewController.h */,
+				EFD5F56317243357009E6E13 /* MainViewController.m */,
+				EFD5F56417243357009E6E13 /* MainViewController.xib */,
+			);
+			path = SignInEverywhere;
+			sourceTree = "<group>";
+		};
+		EFA0E867170F231A00C58A71 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EFA0E8851711941E00C58A71 /* FacebookSDKResources.bundle */,
+				EFA0E868170F231A00C58A71 /* SignInEverywhere-Info.plist */,
+				EFA0E869170F231A00C58A71 /* InfoPlist.strings */,
+				EFA0E86C170F231A00C58A71 /* main.m */,
+				EFA0E86E170F231A00C58A71 /* SignInEverywhere-Prefix.pch */,
+				EFA0E872170F231A00C58A71 /* Default.png */,
+				EFA0E874170F231A00C58A71 /* Default@2x.png */,
+				EFA0E876170F231A00C58A71 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			path = SignInEverywhere;
+			sourceTree = "<group>";
+		};
+		EFD5F5731727192B009E6E13 /* GooglePlus */ = {
+			isa = PBXGroup;
+			children = (
+				EFD5F6891739F0B1009E6E13 /* GoogleOpenSource.framework */,
+				EFD5F68A1739F0B1009E6E13 /* GooglePlus.framework */,
+				EFD5F68B1739F0B1009E6E13 /* GooglePlus.bundle */,
+			);
+			name = GooglePlus;
+			path = SignInEverywhere;
+			sourceTree = "<group>";
+		};
+		EFD5F68417376020009E6E13 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				EFD5F6881739506E009E6E13 /* Providers */,
+				EFD5F68517380134009E6E13 /* AccountView.h */,
+				EFD5F68617380134009E6E13 /* AccountView.m */,
+				EFA0E88D171D869D00C58A71 /* Authenticator.h */,
+				EFA0E88E171D869D00C58A71 /* Authenticator.m */,
+				EFD5F57017244236009E6E13 /* User.h */,
+				EFD5F57117244236009E6E13 /* User.m */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+		EFD5F6881739506E009E6E13 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				EFD5F567172436C9009E6E13 /* FacebookProvider.h */,
+				EFD5F568172436C9009E6E13 /* FacebookProvider.m */,
+				EFD5F56A172436D6009E6E13 /* GooglePlusProvider.h */,
+				EFD5F56B172436D6009E6E13 /* GooglePlusProvider.m */,
+				EFD5F56D172436E3009E6E13 /* TwitterProvider.h */,
+				EFD5F56E172436E3009E6E13 /* TwitterProvider.m */,
+			);
+			name = Providers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EFA0E85C170F231A00C58A71 /* SignInEverywhere */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFA0E880170F231A00C58A71 /* Build configuration list for PBXNativeTarget "SignInEverywhere" */;
+			buildPhases = (
+				EFA0E859170F231A00C58A71 /* Sources */,
+				EFA0E85A170F231A00C58A71 /* Frameworks */,
+				EFA0E85B170F231A00C58A71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SignInEverywhere;
+			productName = SignInEverywhere;
+			productReference = EFA0E85D170F231A00C58A71 /* SignInEverywhere.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EFA0E855170F231A00C58A71 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Ian Barber";
+			};
+			buildConfigurationList = EFA0E858170F231A00C58A71 /* Build configuration list for PBXProject "SignInEverywhere" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				af,
+				am,
+				ar,
+				be,
+				bg,
+				ca,
+				cs,
+				da,
+				de,
+				de_AT,
+				de_CH,
+				el,
+				en_GB,
+				en_IE,
+				en_IN,
+				en_SG,
+				en_ZA,
+				es,
+				es_419,
+				es_AR,
+				es_BO,
+				es_CL,
+				es_CO,
+				es_CR,
+				es_DO,
+				es_EC,
+				es_GT,
+				es_HN,
+				es_MX,
+				es_NI,
+				es_PA,
+				es_PE,
+				es_PR,
+				es_PY,
+				es_SV,
+				es_US,
+				es_UY,
+				es_VE,
+				et,
+				fa,
+				fi,
+				fil,
+				fr,
+				fr_CH,
+				gsw,
+				he,
+				hi,
+				hr,
+				hu,
+				id,
+				in,
+				it,
+				iw,
+				ja,
+				ko,
+				ln,
+				lt,
+				lv,
+				mo,
+				ms,
+				nb,
+				nl,
+				no,
+				pl,
+				pt,
+				pt_BR,
+				pt_PT,
+				ro,
+				ru,
+				sk,
+				sl,
+				sr,
+				sv,
+				sw,
+				th,
+				tl,
+				tr,
+				uk,
+				vi,
+				zh,
+				zh_CN,
+				zh_HK,
+				zh_TW,
+				zu,
+			);
+			mainGroup = EFA0E854170F231A00C58A71;
+			productRefGroup = EFA0E85E170F231A00C58A71 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EFA0E85C170F231A00C58A71 /* SignInEverywhere */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EFA0E85B170F231A00C58A71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFA0E86B170F231A00C58A71 /* InfoPlist.strings in Resources */,
+				EFA0E873170F231A00C58A71 /* Default.png in Resources */,
+				EFA0E875170F231A00C58A71 /* Default@2x.png in Resources */,
+				EFA0E877170F231A00C58A71 /* Default-568h@2x.png in Resources */,
+				EFA0E87D170F231A00C58A71 /* LoginViewController.xib in Resources */,
+				EFA0E8861711941E00C58A71 /* FacebookSDKResources.bundle in Resources */,
+				EFD5F56617243357009E6E13 /* MainViewController.xib in Resources */,
+				EFD5F68E1739F0B1009E6E13 /* GooglePlus.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EFA0E859170F231A00C58A71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFA0E86D170F231A00C58A71 /* main.m in Sources */,
+				EFA0E871170F231A00C58A71 /* AppDelegate.m in Sources */,
+				EFA0E87A170F231A00C58A71 /* LoginViewController.m in Sources */,
+				EFA0E88F171D869D00C58A71 /* Authenticator.m in Sources */,
+				EFD5F56517243357009E6E13 /* MainViewController.m in Sources */,
+				EFD5F569172436C9009E6E13 /* FacebookProvider.m in Sources */,
+				EFD5F56C172436D6009E6E13 /* GooglePlusProvider.m in Sources */,
+				EFD5F56F172436E4009E6E13 /* TwitterProvider.m in Sources */,
+				EFD5F57217244236009E6E13 /* User.m in Sources */,
+				EFD5F68717380134009E6E13 /* AccountView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EFA0E869170F231A00C58A71 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFA0E86A170F231A00C58A71 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EFA0E87B170F231A00C58A71 /* LoginViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFA0E87C170F231A00C58A71 /* en */,
+			);
+			name = LoginViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EFA0E87E170F231A00C58A71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EFA0E87F170F231A00C58A71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EFA0E881170F231A00C58A71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/SignInEverywhere\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SignInEverywhere/SignInEverywhere-Prefix.pch";
+				INFOPLIST_FILE = "SignInEverywhere/SignInEverywhere-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Downloads/google-plus-ios-sdk-1.2.1 2/lib\"",
+				);
+				OTHER_LDFLAGS = (
+					"-lsqlite3.0",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EFA0E882170F231A00C58A71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/SignInEverywhere\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SignInEverywhere/SignInEverywhere-Prefix.pch";
+				INFOPLIST_FILE = "SignInEverywhere/SignInEverywhere-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Downloads/google-plus-ios-sdk-1.2.1 2/lib\"",
+				);
+				OTHER_LDFLAGS = (
+					"-lsqlite3.0",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EFA0E858170F231A00C58A71 /* Build configuration list for PBXProject "SignInEverywhere" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFA0E87E170F231A00C58A71 /* Debug */,
+				EFA0E87F170F231A00C58A71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFA0E880170F231A00C58A71 /* Build configuration list for PBXNativeTarget "SignInEverywhere" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFA0E881170F231A00C58A71 /* Debug */,
+				EFA0E882170F231A00C58A71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EFA0E855170F231A00C58A71 /* Project object */;
+}

@@ -26,7 +26,7 @@ class Authenticator {
     return $this->providers[$id]->validate($request);
   }
   
-  public function response($auth) {
+  public function callback($auth) {
     if($auth) {
       $this->user = $auth;
     }

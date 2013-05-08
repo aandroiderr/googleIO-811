@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Switch
+        android:id="@+id/toggle_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="62dp"
+        android:layout_marginTop="75dp"
+        android:textOn="Sign Out Of Google"
+    	android:textOff="Sign In With Google"
+    	android:onClick="onSwitched" />
+
+    <Switch
+        android:id="@+id/toggle_facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/toggle_google"
+        android:layout_below="@+id/toggle_google"
+        android:layout_marginTop="26dp"
+        android:textOn="Sign Out With Facebook"
+    	android:textOff="Sign In With Facebook"
+    	android:onClick="onSwitched" />
+
+</RelativeLayout>

@@ -74,7 +74,7 @@ class Github implements Provider {
         "retrieved" => time());
     }
     
-    $this->callback->response($_SESSION[self::TAG]);
+    $this->callback->callback($_SESSION[self::TAG]);
     return true;
   }
   
@@ -92,7 +92,7 @@ class Github implements Provider {
         return false;
       }
     }
-    $this->callback->response($_SESSION[self::TAG]);
+    $this->callback->callback($_SESSION[self::TAG]);
     return true;
   }
   
