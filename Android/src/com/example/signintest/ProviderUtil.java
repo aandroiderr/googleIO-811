@@ -18,6 +18,6 @@ public class ProviderUtil {
     }
     
     public static enum Feature {
-    	GRAPH, INTERESTS, NAME
+    	CALENDAR, INTERESTS, PROFILE, GRAPH
     }
 }

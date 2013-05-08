@@ -110,6 +110,19 @@ public class GooglePlusProvider implements
         return true;
     }
 	
+	public boolean hasFeature(ProviderUtil.Feature feature) {
+		// This is just an example! Obviously specific features will 
+		// depend on the APIs implemented etc.
+		switch(feature) {
+		case GRAPH:
+		case CALENDAR:
+		case PROFILE:
+			return true;
+		default: 
+			return false;
+		}
+	}
+	
     /**
      * Perform resolution given a non-null result.
      */

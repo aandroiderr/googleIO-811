@@ -8,15 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/mainbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:onClick="onClick"
-        android:text="@string/signin" />
-
     <TextView
         android:id="@+id/maintext"
         android:layout_width="wrap_content"
@@ -26,5 +17,39 @@
         android:layout_marginTop="58dp"
         android:text="@string/signinmessage"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+    
+    <Button
+        android:id="@+id/mainbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/maintext"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:onClick="onClick"
+        android:text="@string/signin" />
+    
+    <LinearLayout 
+	    android:orientation="vertical"
+	    android:layout_below="@id/mainbutton"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent">
+	    <CheckBox android:id="@+id/checkbox_graph"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Social Graph"/>
+	    <CheckBox android:id="@+id/checkbox_calendar"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Calendar"/>
+	    <CheckBox android:id="@+id/checkbox_profile"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Profile Data"/>
+	    <CheckBox android:id="@+id/checkbox_interests"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Interests"/>
+</LinearLayout>
+    
 </RelativeLayout>

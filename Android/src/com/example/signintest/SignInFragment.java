@@ -233,7 +233,7 @@ public class SignInFragment extends Fragment {
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    for(Provider provider : mProviders.values()) {
-	    	if( provider.handleOnActivityResult(requestCode, resultCode, data)) {
+	    	if( provider.handleOnActivityResult(requestCode, resultCode, data) ) {
 	    		return;
 	    	}
 	    }

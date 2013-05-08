@@ -25,7 +25,6 @@ public class FacebookProvider implements
 	public void trySilentAuthentication() {
 		// Test login status - set allowLoginUI to false
 		Session.openActiveSession(mManager.getActivity(), false, this);
-		
 	}
 
 	@Override
@@ -42,6 +41,19 @@ public class FacebookProvider implements
 	@Override
 	public void disconnect(SignInUser user) {
 		signOut(user);
+	}
+	
+	public boolean hasFeature(ProviderUtil.Feature feature) {
+		// This is just an example! Obviously specific features will 
+		// depend on the APIs implemented etc.
+		switch(feature) {
+		case GRAPH:
+		case INTERESTS:
+		case PROFILE:
+			return true;
+		default: 
+			return false;
+		}
 	}
 
 	@Override
@@ -69,6 +81,9 @@ public class FacebookProvider implements
 	@Override
 	public boolean handleOnActivityResult(int requestCode, int resultCode,
 			Intent data) {
+		if(Session.getActiveSession() == null) {
+			return false;
+		}
 		return Session.getActiveSession().onActivityResult(mManager.getActivity(), requestCode, resultCode, data);
 	}
 

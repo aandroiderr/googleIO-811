@@ -74,9 +74,12 @@ public class SignInUser {
 	}
 	
 	public boolean hasFeature(ProviderUtil.Feature feature) {
-		// TODO(ianbarber): How do we store providers? Loop over shared config?
-		// Loop over providers, and see if they provide that feature.
-		return true;
+		for(Provider p : mProviderData.keySet()) {
+			if (p.hasFeature(feature)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public boolean canMerge(SignInUser user) {
