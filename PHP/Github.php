@@ -33,7 +33,7 @@ class Github implements Provider {
    */
   public function getMarkup($options = array()) {
     $url = $this->getAuthUrl($options);
-    return sprintf('<a href="%s">Sign In With Github</a>', $url);
+    return sprintf('<a class="btn" href="%s">Sign In With Github</a>', $url);
   }
   
   public function getScript() {
