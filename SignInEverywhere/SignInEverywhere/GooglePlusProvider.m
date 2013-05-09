@@ -27,13 +27,16 @@
   return @"Google+";
 }
 
-- (UIButton *)buttonWithFrame:(CGRect)frame {
+- (UIView *)buttonWithFrame:(CGRect)frame {
   AccountView *av = [[AccountView alloc] initWithFrame:frame];
 
-  if (self.user) {    
-    UIImage * img = [[UIImage alloc] initWithData:
+  if (self.user) {
+    NSString *imUrl = [self.user.image.url
+                       stringByReplacingOccurrencesOfString:@"sz=50"
+                       withString:@"sz=200"];
+    UIImage *img = [[UIImage alloc] initWithData:
                         [NSData dataWithContentsOfURL:
-                            [NSURL URLWithString:self.user.image.url]]];
+                            [NSURL URLWithString:imUrl]]];
     UIImageView *uiv = [[UIImageView alloc] initWithImage:img];
 
     [av setAccount:self.user.displayName
@@ -41,7 +44,7 @@
        withPicture:uiv];
   } else {
     UIImageView *uiv = [[UIImageView alloc] initWithImage:
-                        [UIImage imageNamed:@"googleplus.png"]];
+                        [UIImage imageNamed:@"gpp_sign_in_dark_icon_normal@2x.png"]];
     [av setAccount:nil byProvider:[self providerId] withPicture:uiv];
   }
   return av;

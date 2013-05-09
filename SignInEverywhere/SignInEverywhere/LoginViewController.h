@@ -12,11 +12,14 @@
           didChooseProvider:(NSString *)provider;
 @end
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <
+  UITableViewDataSource,
+  UITableViewDelegate
+>
 
 - (id)initWithDelegate:(id<LoginDelegate>)delegate;
-- (IBAction)didTapProvider:(id)sender;
 
 @property (nonatomic,weak) id<LoginDelegate> delegate;
+@property (nonatomic, strong) IBOutlet UITableView* tableview;
 
 @end

@@ -13,7 +13,7 @@
                bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    self.title = @"Multi-Account App";
+    self.title = @"Home";
   }
   return self;
 }
@@ -46,12 +46,12 @@
 - (IBAction)didTapChoose:(id)sender {
   // TODO: Start a spinner
   LoginViewController *vc = [[LoginViewController alloc] initWithDelegate:self];
-  [self presentViewController:vc animated:YES completion:nil];
+  [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)loginViewController:(LoginViewController *)controller
           didChooseProvider:(NSString *)provider {
-  [self dismissViewControllerAnimated:YES completion:nil];
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

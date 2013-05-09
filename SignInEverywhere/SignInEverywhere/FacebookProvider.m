@@ -34,18 +34,17 @@
   return @"Facebook";
 }
 
-- (UIButton *)buttonWithFrame:(CGRect)frame {
+- (UIView *)buttonWithFrame:(CGRect)frame {
   AccountView *av = [[AccountView alloc] initWithFrame:frame];
 
   if (FBSession.activeSession.isOpen) {
-    UIView *uiv = [[FBProfilePictureView alloc]
+    FBProfilePictureView *uiv = [[FBProfilePictureView alloc]
         initWithProfileID:self.user.id
           pictureCropping:FBProfilePictureCroppingSquare];
-
     [av setAccount:self.user.name byProvider:[self providerId] withPicture:uiv];
   } else {
     UIImageView *uiv = [[UIImageView alloc] initWithImage:
-        [UIImage imageNamed:@"facebook.png"]];
+        [UIImage imageNamed:@"f_logo.png"]];
     [av setAccount:nil byProvider:[self providerId] withPicture:uiv];
   }
   return av;

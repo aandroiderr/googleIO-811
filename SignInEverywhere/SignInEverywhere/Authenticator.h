@@ -7,7 +7,7 @@
 
 @protocol Provider <NSObject>
 
-- (UIButton *)buttonWithFrame:(CGRect)frame;
+- (UIView *)buttonWithFrame:(CGRect)frame;
 - (NSString *)providerId;
 - (void)signIn;
 - (void)signOut;

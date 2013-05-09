@@ -6,9 +6,9 @@
 #import "Authenticator.h"
 #import "LoginViewController.h"
 
-@interface LoginViewController ()
-
-@end
+static NSString* const kCellTag = @"loginview";
+static const NSInteger kCellViewTag = 3938;
+static const CGFloat kCellHeight = 110.0;
 
 @implementation LoginViewController
 
@@ -23,27 +23,48 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.title = @"Choose Account";
-  
-  // We need to loop over all our registered providers,
-  // get the status out of them, and display our account chooser.
-  NSInteger pIndex = 0;
-  CGFloat y = 5.0;
-  for (id<Provider>provider in [[Authenticator sharedAuth] providers]) {
-    UIButton *pButton = [provider buttonWithFrame:CGRectMake(5, y, 310.0, 110.0)];
-    [pButton addTarget:self
-                action:@selector(didTapProvider:)
-      forControlEvents:UIControlEventTouchUpInside];
-    [pButton setTag:pIndex++];
-    [self.view addSubview:pButton];
-    y += 115;
-  }
+  self.title = @"Choose Account";  
 }
 
-- (IBAction)didTapProvider:(id)sender {
-  UIButton *btn = (UIButton *)sender;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
+  return [[[Authenticator sharedAuth] providers] count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+    heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return kCellHeight;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  id<Provider> p = [[[Authenticator sharedAuth] providers]
+                       objectAtIndex:[indexPath row]];
+  UIView *pButton = [p buttonWithFrame:CGRectMake(0,
+                                                    0,
+                                                    tableView.frame.size.width,
+                                                    kCellHeight)];
+  [pButton setTag:kCellViewTag];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellTag];
+  if (!cell) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                   reuseIdentifier:kCellTag];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  } else {
+    [[[cell contentView] viewWithTag:kCellViewTag] removeFromSuperview];
+  }
+  [[cell contentView] addSubview:pButton];
+  return cell;
+}
+
+- (void)tableView:(UITableView *)tableView
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   id<Provider> provider = [[[Authenticator sharedAuth] providers]
-                              objectAtIndex:btn.tag];
+                              objectAtIndex:[indexPath row]];
   if (provider) {
     [provider signIn];
     if (self.delegate) {

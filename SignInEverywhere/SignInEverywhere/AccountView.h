@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AccountView : UIButton
+@interface AccountView : UIView
 
 - (void)setAccount:(NSString *)account
         byProvider:(NSString *)provider
