@@ -5,4 +5,5 @@ interface User {
   public function getId();
   public function getName();
   public function hasFeature($feature);
+  public function disconnect();
 }

@@ -27,7 +27,7 @@ if(strpos($url, '/static/') === 0)  {
 } else if(strpos($url, '/login') === 0) {
     require_once "controllers/login.php";
     $controller = new LoginController($authenticator);
-} else if(strpos($url, '/logout') === 0) {
+} else if(strpos($url, '/logout') === 0 || strpos($url, '/disconnect') === 0) {
     require_once "controllers/logout.php";
     $controller = new LogoutController($authenticator);    
 } else {

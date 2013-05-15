@@ -77,23 +77,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView 
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:text="@string/btn_disconnect" />
         <Button 
             android:id="@+id/disconnect_google"
             android:text="@string/provider_google"
             android:onClick="onDisconnect"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
             />
         <Button 
             android:id="@+id/disconnect_facebook"
             android:text="@string/provider_facebook"
             android:onClick="onDisconnect"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
             />
         <Button 
             android:id="@+id/disconnect_linkedin"
             android:text="@string/provider_linkedin"
+            android:visibility="gone"
             android:onClick="onDisconnect"
+            android:layout_height="wrap_content"
             />
     </LinearLayout>
 </LinearLayout>

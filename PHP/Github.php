@@ -1,5 +1,38 @@
 <?php
 require_once "Provider.php";
+require_once "User.php";
+
+class GithubUser implements User {
+  private $data;
+  
+  public function __construct($data) {
+    $this->data = $data;
+  }
+  
+  public function getProvider() {
+    return "github";
+  }
+  
+  public function getId() {
+    return $this->data['user']->id;
+  }
+  
+  public function getName() {
+    return $this->data['user']->name;
+  }
+  
+  public function hasFeature($feature) {
+    // Just an example!
+    if($feature == Feature::SRCCONTROL) {
+      return true;
+    }
+    return false;
+  }
+  
+  public function disconnect() {
+    unset($_SESSION[Github::TAG]);
+  }
+}
 
 class Github implements Provider {
   // How often should we revalidate access.
@@ -66,15 +99,12 @@ class Github implements Provider {
       $json = file_get_contents(sprintf(self::USER_URL, $token->access_token));
       $user = json_decode($json);
       $_SESSION[self::TAG] = array(
-        'id' => $user->id,
-        'provider' => $this->getId(),
-        'name' => $user->name,
         'token' => $token->access_token,
         'user' => $user, 
         "retrieved" => time());
     }
     
-    $this->callback->onSignedIn($_SESSION[self::TAG]);
+    $this->callback->onSignedIn(new GithubUser($_SESSION[self::TAG]));
     return true;
   }
   
@@ -83,7 +113,6 @@ class Github implements Provider {
       return false;
     }
     if((time() - $_SESSION[self::TAG]['retrieved']) > self::REVAL_EVERY) {
-      // TODO:!
       $response = file_get_contents(get_validate_url());
       $tokeninfo = json_decode($response);
       if(!isset($tokeninfo->id)) {
@@ -92,7 +121,7 @@ class Github implements Provider {
         return false;
       }
     }
-    $this->callback->onSignedIn($_SESSION[self::TAG]);
+    $this->callback->onSignedIn(new GithubUser($_SESSION[self::TAG]));
     return true;
   }
   

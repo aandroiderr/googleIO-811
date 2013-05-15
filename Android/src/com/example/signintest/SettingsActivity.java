@@ -34,21 +34,44 @@ public class SettingsActivity extends FragmentActivity
 		if(user.isSignedIn()) {
 			for(Provider p : user.listConnectedProviders()) {
 				int toggle = -1;
+				int disconnect = -1;
 				if(p.getId() == GooglePlusProvider.ID) {
 					toggle = R.id.toggle_google;
+					disconnect = R.id.disconnect_google;
 				} else if(p.getId() == FacebookProvider.ID) {
 					toggle = R.id.toggle_facebook;
+					disconnect = R.id.disconnect_facebook;
 				} else if(p.getId() == LinkedinProvider.ID) {
 					toggle = R.id.toggle_linkedin;
+					disconnect = R.id.disconnect_linkedin;
 				}
 				
 				if(toggle != -1) {
 					((Switch)findViewById(toggle)).setChecked(true);
+					findViewById(disconnect).setVisibility(View.VISIBLE);
 				}
 			}
 		} else {
 			
 		}
+	}
+	
+	public void onDisconnect(View v) { 
+		String provider = null;
+		
+		switch (v.getId()) {
+		case R.id.disconnect_google:
+			provider = GooglePlusProvider.ID;
+			break;
+		case R.id.disconnect_facebook:
+			provider = FacebookProvider.ID;
+			break;
+		case R.id.disconnect_linkedin:
+			provider = LinkedinProvider.ID;
+			break;
+		}
+		
+		mSignInFragment.disconnect(provider);
 	}
 	
 	public void onSwitched(View v) {

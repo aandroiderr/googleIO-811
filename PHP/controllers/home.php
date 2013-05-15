@@ -15,8 +15,8 @@ class HomeController {
     }
     
     $user = $this->auth->getUser();
-    $content = "<p><a href='/logout'>Logout</a></p>";
-    $content .= sprintf("<h1>Hi %s</h1>", $user['name']);
+    $content = "<p><a href='/logout'>Logout</a> | <a href='/disconnect'>Disconnect</a></p>";
+    $content .= sprintf("<h1>Hi %s</h1>", $user->getName());
     //$content .= print_r($user, true);
     include_once "views/container.php";
   }

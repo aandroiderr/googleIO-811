@@ -8,6 +8,9 @@ class LogoutController {
   }
   
   public function handle($path, $unsafe_request) {
+    if($path == "/disconnect") {
+      $this->auth->getUser()->disconnect();
+    }
     $_SESSION = array();
     header("Location: /");
     exit;

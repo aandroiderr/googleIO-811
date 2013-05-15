@@ -1,5 +1,5 @@
-Link google-api-php-client:
-// TODO
+Link google-api-php-client to a v0.6.2 of the Google PHP API Client
+https://code.google.com/p/google-api-php-client/downloads/detail?name=google-api-php-client-0.6.2.tar.gz
 
 Create a config.ini file in this directory: 
 ```

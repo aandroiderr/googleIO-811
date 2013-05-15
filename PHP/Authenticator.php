@@ -23,7 +23,7 @@ class Authenticator {
   }
   
   public function handleResponse($id, $unsafe_request) {
-    return $this->providers[$id]->validate($request);
+    return $this->providers[$id]->validate($unsafe_request);
   }
   
   public function onSignedIn($auth) {

@@ -3,6 +3,42 @@ require_once "Provider.php";
 require_once "google-api-php-client/src/Google_Client.php";
 require_once "google-api-php-client/src/contrib/Google_PlusService.php";
 
+class GooglePlusUser implements User {
+  private $data;
+  const REVOKE_URL = "https://accounts.google.com/o/oauth2/revoke?token=%s";
+  
+  public function __construct($data) {
+    $this->data = $data;
+  }
+  
+  public function getProvider() {
+    return "googleplus";
+  }
+  
+  public function getId() {
+    return $this->data['user']['id'];
+  }
+  
+  public function getName() {
+    return $this->data['user']['displayName'];
+  }
+  
+  public function hasFeature($feature) {
+    // Just an example!
+    if($feature == Feature::APPACTIVITES) {
+      return true;
+    }
+    return false;
+  }
+  
+  public function disconnect() {
+    $token = json_decode($this->data['token']);
+    $access_token = $token->access_token;
+    file_get_contents(sprintf(self::REVOKE_URL, $access_token));
+    unset($_SESSION[GooglePlus::TAG]);
+  }
+}
+
 class GooglePlus implements Provider {
   // Tag for storing session data.
   const TAG = "Google+";
@@ -76,9 +112,7 @@ EOS;
     $_SESSION[self::TAG] = array();
     $_SESSION[self::TAG]['token'] = $this->gclient->getAccessToken();
     $_SESSION[self::TAG]['user'] = $user = $this->plus->people->get("me");
-    $_SESSION[self::TAG]['id'] = $user['id'];
-    $_SESSION[self::TAG]['name'] = $user['displayName'];
-    $this->callback->onSignedIn($_SESSION[self::TAG]);
+    $this->callback->onSignedIn(new GooglePlusUser($_SESSION[self::TAG]));
     return true;
   }
   
@@ -86,7 +120,7 @@ EOS;
     // Check expiry on access token. 
     if(isset($_SESSION[self::TAG]['token']) && 
       $this->checkExpiry()) {
-      $this->callback->onSignedIn($_SESSION[self::TAG]);
+      $this->callback->onSignedIn(new GooglePlusUser($_SESSION[self::TAG]));
       return true;
     }
     return false;
