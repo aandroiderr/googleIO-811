@@ -22,11 +22,11 @@ class Authenticator {
     return $this->user;
   }
   
-  public function handleResponse($id, $request) {
+  public function handleResponse($id, $unsafe_request) {
     return $this->providers[$id]->validate($request);
   }
   
-  public function callback($auth) {
+  public function onSignedIn($auth) {
     if($auth) {
       $this->user = $auth;
     }

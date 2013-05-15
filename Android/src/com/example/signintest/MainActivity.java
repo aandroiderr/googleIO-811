@@ -16,6 +16,7 @@ public class MainActivity extends FragmentActivity
 	implements SignInStatusListener, OnClickListener {
 	
 	private SignInFragment mSignInFragment;
+	private static final int MAIN_REQUEST = 352;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +26,21 @@ public class MainActivity extends FragmentActivity
         mSignInFragment = SignInFragment.getSignInFragment(this);
 	}
 
+	/**
+	 * onStatusChange is called whenever we have a new user object or a 
+	 * change to the user object from the sign in fragment. In this case 
+	 * we're just going to test for different features avialable, and
+	 * display the user's name.
+	 * 
+	 * @param SignInUser user the current user object
+	 */
 	@Override
 	public void onStatusChange(SignInUser user) {
 		CheckBox graph = (CheckBox)findViewById(R.id.checkbox_graph);
 		CheckBox calendar = (CheckBox)findViewById(R.id.checkbox_calendar);
 		CheckBox profile = (CheckBox)findViewById(R.id.checkbox_profile);
-		CheckBox interests = (CheckBox)findViewById(R.id.checkbox_interests);
+		CheckBox featurea = (CheckBox)findViewById(R.id.checkbox_featurea);
+		CheckBox featureb = (CheckBox)findViewById(R.id.checkbox_featureb);
 		TextView maintext = (TextView)findViewById(R.id.maintext);
 		Button signin = (Button)findViewById(R.id.mainbutton);
 		if (user.isSignedIn()) {
@@ -40,7 +50,8 @@ public class MainActivity extends FragmentActivity
 			graph.setChecked(user.hasFeature(ProviderUtil.Feature.GRAPH));
 			calendar.setChecked(user.hasFeature(ProviderUtil.Feature.CALENDAR));
 			profile.setChecked(user.hasFeature(ProviderUtil.Feature.PROFILE));
-			interests.setChecked(user.hasFeature(ProviderUtil.Feature.INTERESTS));
+			featurea.setChecked(user.hasFeature(ProviderUtil.Feature.FEATUREA));
+			featureb.setChecked(user.hasFeature(ProviderUtil.Feature.FEATUREB));
 			
 			if(user.isNew()) {
 				// For new users, give them an extra hello!
@@ -52,7 +63,8 @@ public class MainActivity extends FragmentActivity
 			graph.setChecked(false);
 			calendar.setChecked(false);
 			profile.setChecked(false);
-			interests.setChecked(false);
+			featurea.setChecked(false);
+			featureb.setChecked(false);
 		}
  	}
 
@@ -63,20 +75,31 @@ public class MainActivity extends FragmentActivity
 			if (((Button)v).getText() == getString(R.string.signin)) {
 				// Show Sign In screen.
 				Intent intent = new Intent(this, AccountChooserActivity.class);
-				startActivity(intent);	
+				startActivityForResult(intent, MAIN_REQUEST);	
 			} else {
 				// Show settings screen.
 				Intent intent = new Intent(this, SettingsActivity.class);
-				startActivity(intent);
+				startActivityForResult(intent, MAIN_REQUEST);
 			}
 			break;
 		}
 	}
 	
+	/**
+	 * onActivityResult may get either responses from the account or settings 
+	 * activities, or from callbacks from the various providers.
+	 */
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		mSignInFragment.onActivityResult(requestCode, resultCode, data);
-		onStatusChange(mSignInFragment.getUser());
+		if(requestCode == MAIN_REQUEST) {
+			onStatusChange(mSignInFragment.getUser());
+		} else {
+			mSignInFragment.onActivityResult(requestCode, resultCode, data);
+		}
+	}
+	
+	public void onNewIntent(Intent intent) {
+		mSignInFragment.onActivityResult(ProviderUtil.WEBCALLBACK, RESULT_OK, intent);
 	}
 
 }

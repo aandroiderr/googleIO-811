@@ -46,10 +46,14 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="Profile Data"/>
-	    <CheckBox android:id="@+id/checkbox_interests"
+	    <CheckBox android:id="@+id/checkbox_featurea"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Interests"/>
+	        android:text="Feature A"/>
+	    <CheckBox android:id="@+id/checkbox_featureb"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Feature B"/>
 </LinearLayout>
     
 </RelativeLayout>

@@ -1,6 +1,9 @@
 package com.example.signintest;
 
 import com.example.signintest.SignInFragment.SignInStatusListener;
+import com.example.signintest.providers.FacebookProvider;
+import com.example.signintest.providers.GooglePlusProvider;
+import com.example.signintest.providers.LinkedinProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +21,8 @@ public class SettingsActivity extends FragmentActivity
 		setContentView(R.layout.activity_settings);
 		
 		mSignInFragment = SignInFragment.getSignInFragment(this);
-		//configureSettings(mSignInFragment.getUser());
+		configureSettings(mSignInFragment.getUser());
+		onNewIntent(getIntent());
 	}
 
 	@Override
@@ -34,6 +38,8 @@ public class SettingsActivity extends FragmentActivity
 					toggle = R.id.toggle_google;
 				} else if(p.getId() == FacebookProvider.ID) {
 					toggle = R.id.toggle_facebook;
+				} else if(p.getId() == LinkedinProvider.ID) {
+					toggle = R.id.toggle_linkedin;
 				}
 				
 				if(toggle != -1) {
@@ -55,6 +61,9 @@ public class SettingsActivity extends FragmentActivity
 			break;
 		case R.id.toggle_facebook:
 			provider = FacebookProvider.ID;
+			break;
+		case R.id.toggle_linkedin:
+			provider = LinkedinProvider.ID;
 			break;	
 		}
 	    
@@ -68,5 +77,9 @@ public class SettingsActivity extends FragmentActivity
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		mSignInFragment.onActivityResult(requestCode, resultCode, data);
+	}
+	
+	public void onNewIntent(Intent intent) {
+		mSignInFragment.onActivityResult(ProviderUtil.WEBCALLBACK, RESULT_OK, intent);
 	}
 }

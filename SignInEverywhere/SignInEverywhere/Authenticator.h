@@ -9,6 +9,7 @@
 
 - (UIView *)buttonWithFrame:(CGRect)frame;
 - (NSString *)providerId;
+- (BOOL)hasIdentity;
 - (void)signIn;
 - (void)signOut;
 - (void)disconnect;

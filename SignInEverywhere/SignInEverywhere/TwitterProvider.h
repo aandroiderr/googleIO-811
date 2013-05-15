@@ -11,7 +11,9 @@
 
 @interface TwitterProvider : NSObject <Provider>
 
-@property (strong,nonatomic) ACAccountStore* accountStore;
-@property (strong,nonatomic) ACAccountType *accountType;
+@property (nonatomic) ACAccountStore* accountStore;
+@property (nonatomic) ACAccountType *accountType;
+@property (nonatomic) ACAccount *user;
+@property (nonatomic) Boolean isUserAction;
 
 @end

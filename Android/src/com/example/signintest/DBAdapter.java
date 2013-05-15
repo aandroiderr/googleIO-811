@@ -1,5 +1,7 @@
 package com.example.signintest;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,6 +11,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBAdapter {
 	private Context mContext;
+	/*
+	 * Constants for table and column names.
+	 */
 	public static String USER_TABLE = "users";
 	public static String IDP_TABLE = "providers";
 	public static String KEY_ID = "id";
@@ -16,6 +21,10 @@ public class DBAdapter {
 	public static String KEY_PROVIDER = "provider";
 	public static String KEY_PROVIDER_ID = "providerId";
 	public static String KEY_USER_ID = "userId";
+	
+	/*
+	 * Database member variables.
+	 */
 	private DatabaseHelper mHelper;
 	private SQLiteDatabase mDb;
 	
@@ -24,6 +33,11 @@ public class DBAdapter {
 		mHelper = new DatabaseHelper(mContext);
 	}
 	
+	/**
+	 * Helper class to manage the example SQLite DB. 
+	 * In a real application, this would probably be a cache
+	 * backed by a webservice!
+	 */
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 		public DatabaseHelper(Context context) {
 			super(context, "appdb", null, 2);
@@ -69,7 +83,7 @@ public class DBAdapter {
 	 * @param userId
 	 * @return
 	 */
-	public Integer getUserId (Provider provider, String idpUserId) {
+	public Long getUserId (Provider provider, String idpUserId) {
 		String[] projection = new String[] {
 				KEY_PROVIDER,
 				KEY_PROVIDER_ID,
@@ -82,7 +96,27 @@ public class DBAdapter {
 		if (cursor != null) {
 			cursor.moveToFirst();
 		}
-		return cursor.getCount() == 1 ? Integer.valueOf(cursor.getInt(2)) : null;
+		return cursor.getCount() == 1 ? Long.valueOf(cursor.getLong(2)) : null;
+	}
+	
+	public ArrayList<String> getConnectedProviders(long userId) {
+		String[] projection = new String[] {
+				KEY_PROVIDER
+		};
+		String where = String.format("%s=?", KEY_USER_ID);
+		Cursor cursor = mDb.query(IDP_TABLE, projection, 
+				where, new String[] {String.valueOf(userId)}, 
+				null, null, null, null);
+		ArrayList<String> retval = new ArrayList<String>();
+		if (cursor != null) {
+			cursor.moveToFirst();
+			while (cursor.isAfterLast() == false) {
+				retval.add(cursor.getString(0));
+				cursor.moveToNext();
+			}
+		}
+		
+		return retval;
 	}
 	
 	/**
@@ -93,12 +127,26 @@ public class DBAdapter {
 	 * @param name
 	 * @return
 	 */
-	public long createUser(Provider provider, SignInUser user) {
+	public Long createUser(Provider provider, SignInUser user) {
 		ContentValues row = new android.content.ContentValues();
 		row.put(KEY_NAME, user.getName());
 		long userId = mDb.insert(USER_TABLE, null, row);
 		associateUser(provider, user, userId);
-		return userId;
+		return Long.valueOf(userId);
+	}
+	
+	/**
+	 * Remove a user from the database. 
+	 * 
+	 * @param userId
+	 */
+	public void deleteUser(long userId) {
+		 mDb.delete(IDP_TABLE, 
+					String.format("%s=?", KEY_USER_ID), 
+					new String[] {String.valueOf(userId)});
+		mDb.delete(USER_TABLE, 
+				String.format("%s=?", KEY_ID), 
+				new String[] {String.valueOf(userId)});
 	}
 	
 	/**

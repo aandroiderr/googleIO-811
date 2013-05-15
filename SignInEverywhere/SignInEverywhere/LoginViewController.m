@@ -40,6 +40,25 @@ static const CGFloat kCellHeight = 110.0;
   return kCellHeight;
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView
+    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+    forRowAtIndexPath:(NSIndexPath *)indexPath{
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    self.selectedRow = [indexPath row];
+    [self showSignOutDisconnect];
+  }
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return @"Sign Out";
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   id<Provider> p = [[[Authenticator sharedAuth] providers]
@@ -61,6 +80,13 @@ static const CGFloat kCellHeight = 110.0;
   return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView
+    canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  id<Provider> p = [[[Authenticator sharedAuth] providers]
+                    objectAtIndex:[indexPath row]];
+  return [p hasIdentity];
+}
+
 - (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   id<Provider> provider = [[[Authenticator sharedAuth] providers]
@@ -73,5 +99,36 @@ static const CGFloat kCellHeight = 110.0;
     }
   }
 }
+
+- (void)showSignOutDisconnect {
+  UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Sign Out"
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Sign Out",
+                                                            @"Disconnect",
+                                                            nil];
+  [message show];
+}
+
+- (void)alertView:(UIAlertView *)alertView
+didDismissWithButtonIndex:(NSInteger)buttonIndex {
+  if (self.selectedRow < 0) {
+    return;
+  }
+  id<Provider> provider = [[[Authenticator sharedAuth] providers]
+                           objectAtIndex:self.selectedRow];
+  switch (buttonIndex) {
+    case 1:
+      [provider signOut];
+      break;
+    case 2:
+      [provider disconnect];
+      break;
+  }
+  [self.tableview reloadData];
+  self.selectedRow = -1;
+}
+
 
 @end

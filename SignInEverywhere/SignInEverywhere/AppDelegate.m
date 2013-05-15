@@ -7,6 +7,7 @@
 #import "FacebookProvider.h"
 #import "GooglePlusProvider.h"
 #import "MainViewController.h"
+#import "TwitterProvider.h"
 
 @implementation AppDelegate
 
@@ -16,9 +17,11 @@
   id<Provider> googleProvider = [[GooglePlusProvider alloc]
       initWithClientId:@"644347805375.apps.googleusercontent.com"];
   id<Provider> facebookProvider = [[FacebookProvider alloc] init];
+  id<Provider> twitterProvider = [[TwitterProvider alloc] init];
   [Authenticator sharedAuth].providers = [NSArray arrayWithObjects:
                                           googleProvider,
                                           facebookProvider,
+                                          twitterProvider,
                                           nil];
 
   MainViewController *viewController = [[MainViewController alloc]

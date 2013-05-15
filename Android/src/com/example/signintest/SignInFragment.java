@@ -1,7 +1,9 @@
 package com.example.signintest;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,15 +23,18 @@ import android.support.v4.app.FragmentTransaction;
 public class SignInFragment extends Fragment {
 	
 	/**
-	 * Tag used to identify fragments of this type.
+	 * Tags used to identify fragments of this type.
 	 */
 	private static final String TAG_SIGNIN_FRAGMENT = "signInFragment";
-	
+	private static final int TAG_DIALOG_REQ = 5739;
 	private static final String TAG_DIALOG = "accountStatusChange";
 	
-    // The current user. 
-    // Declared static for reuse between activities.
+    /**
+     * The current user - declared static for simple sharing between activities.
+     */
     private static SignInUser mUser;
+   
+    private static SignInUser mIncomingUser;
 	
 	/**
 	 * HashMap used to store the providers registered.
@@ -38,7 +43,14 @@ public class SignInFragment extends Fragment {
 	
 	private DBAdapter mDb;
 	
-    // A handler to post callbacks (rather than call them in a potentially reentrant way.)
+	/**
+	 * Local storage of a passed in intent, in case we are called before the providers
+	 * are initialised.
+	 */
+	private Intent mPendingIntent;
+	private int mPendingRequestCode;
+	private int mPendingResultCode;
+	
     private Handler mHandler;
 
 	/**
@@ -57,61 +69,25 @@ public class SignInFragment extends Fragment {
     /**
      * Local handler to send callbacks on sign in.
      */
-    private final class SignInClientFragmentHandler extends Handler {
+    private static final class SignInClientFragmentHandler extends Handler {
         public static final int WHAT_STATUS_CHANGE = 1;
+        private final WeakReference<SignInFragment> mFragment;
 
-        public SignInClientFragmentHandler() {
-            super(Looper.getMainLooper());
+        public SignInClientFragmentHandler(SignInFragment parent) {
+        	super(Looper.getMainLooper());
+        	mFragment = new WeakReference<SignInFragment>(parent);
         }
 
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what != WHAT_STATUS_CHANGE) {
+            if (msg.what != WHAT_STATUS_CHANGE || mFragment.get() == null) {
                 return;
             }
 
-            Activity activity = getActivity();
+            Activity activity = mFragment.get().getActivity();
             if ( activity instanceof SignInStatusListener ) {
                 ((SignInStatusListener) activity).onStatusChange(mUser);
             }
-        }
-    }
-    
-    public static final class MergeOrSwitchDialogFragment extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage(R.string.dialog_merge_switch)
-                   .setPositiveButton(R.string.do_merge, new DialogInterface.OnClickListener() {
-                       public void onClick(DialogInterface dialog, int id) {
-                           // TODO: Merge the users
-                       }
-                   })
-                   .setNegativeButton(R.string.do_switch, new DialogInterface.OnClickListener() {
-                       public void onClick(DialogInterface dialog, int id) {
-                           // TODO: Switch user.
-                       }
-                   });
-            return builder.create();
-        }
-    }
-    
-    public static final class SwitchOrCancelDialogFragment extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage(R.string.dialog_switch_cancel)
-                   .setPositiveButton(R.string.do_switch, new DialogInterface.OnClickListener() {
-                       public void onClick(DialogInterface dialog, int id) {
-                           // TODO: Switch user.
-                       }
-                   })
-                   .setNegativeButton(R.string.do_cancel, new DialogInterface.OnClickListener() {
-                       public void onClick(DialogInterface dialog, int id) {
-                           // TODO: Drop the newly signed in user.
-                       }
-                   });
-            return builder.create();
         }
     }
     
@@ -139,19 +115,15 @@ public class SignInFragment extends Fragment {
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Retain instance to avoid reconnecting on rotate.  This means that onDestroy and onCreate
-        // will not be called on configuration changes.
         setRetainInstance(true);
 	}
 	
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		if(mHandler == null) {
-			mHandler = new SignInClientFragmentHandler();
-			mDb = new DBAdapter(getActivity().getApplicationContext());
-			mProviders = new HashMap<String,Provider>();
-			addProviders(ProviderUtil.getProviders());
-		}
+		mHandler = new SignInClientFragmentHandler(this);
+		mDb = new DBAdapter(getActivity().getApplicationContext());
+		mProviders = new HashMap<String,Provider>();
+		addProviders(ProviderUtil.getProviders());
 	}
 	
 	public void onDestroy() {
@@ -159,8 +131,14 @@ public class SignInFragment extends Fragment {
 			provider.detachFragment();
 		}
 		super.onDestroy();
-	}
+	}				
 	
+	/**
+	 * Return a sign in user built with the current database, 
+	 * to avoid reinitialising the DB unnecessarily. 
+	 * 
+	 * @return SignInUser a new user.
+	 */
 	public SignInUser buildSignInUser() {
 		return new SignInUser(mDb);
 	}
@@ -169,7 +147,7 @@ public class SignInFragment extends Fragment {
 		for (Provider provider : providers) {
 			String pId = provider.getId();
 			if (null != mProviders.get(pId)) {
-				assert(false); // TODO: Just blow up for now, I'll think about this later.
+				assert(false); // Just blow up for now, but of course we should handle this!
 			}
 			mProviders.put(pId, provider);
 			provider.setFragment(this);
@@ -177,12 +155,10 @@ public class SignInFragment extends Fragment {
 		testProviders();
 	}
 	
-	public void testProviders() {
-		for (Provider provider : mProviders.values()) {
-			provider.trySilentAuthentication();
-		}
+	public String getRoutingKey() {
+		return getActivity().getLocalClassName().replace("Activity", "").toLowerCase(Locale.ENGLISH);
 	}
-	
+	 	
 	public void signIn(String provider) {
 		mProviders.get(provider).signIn();
 	}
@@ -198,6 +174,50 @@ public class SignInFragment extends Fragment {
 		mUser.removeProvider(p);
 	}
 	
+	public SignInUser getUser() {
+		return mUser;
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(mProviders == null) {
+			// If we're not ready, just hold on to the intent until we're done.
+			mPendingIntent = data;
+			mPendingRequestCode = requestCode;
+			mPendingResultCode = resultCode;
+			return;
+		}
+	    for(Provider provider : mProviders.values()) {
+	    	if( provider.handleOnActivityResult(requestCode, resultCode, data) ) {
+	    		return;
+	    	}
+	    }
+	}
+	
+	/**
+	 * Called to connect providers to establish provider state
+	 * where possible.
+	 */
+	private void testProviders() {
+		if (mPendingIntent != null) {
+			onActivityResult(mPendingRequestCode, mPendingResultCode, mPendingIntent);
+			mPendingIntent = null;
+		}
+		for (Provider provider : mProviders.values()) {
+			provider.trySilentAuthentication();
+		}
+	}
+	
+	/**
+	 * Called on sign in with a new user to ensure that we have the
+	 * right providers automatically connected.
+	 * 
+	 */
+	private void resolveUserStates() {
+		for(String provider : mUser.listAdditionalProviders()) {
+			signIn(provider);
+		}
+	}
+	
 	/**
 	 * Called when the provider has signed in the user. 
 	 * Merging users is always handled here. 
@@ -208,34 +228,84 @@ public class SignInFragment extends Fragment {
 		if (mUser == null) {
 			// If we have no user, we just take the supplied user.
 			mUser = user;
-		} else if(mUser.getId() == user.getId()) {
+			mHandler.sendEmptyMessage(SignInClientFragmentHandler.WHAT_STATUS_CHANGE);
+			resolveUserStates();
+		} else if(mUser.getId() == user.getId() || user.isNew()) {
 			// If we have a new provider for the same user, just merge.
-			for(Provider provider : user.listConnectedProviders()) {
-				mUser.setProviderData(provider, user.getProviderData(provider));
-			}
+			mUser.merge(user);
+			mHandler.sendEmptyMessage(SignInClientFragmentHandler.WHAT_STATUS_CHANGE);
 		} else {
+			mIncomingUser = user;
 			// If not we have two possible states: 
+			DialogFragment f;
 			if(mUser.canMerge(user)) {
 				// We can automatically merge, but we should ask the user. 
-				new MergeOrSwitchDialogFragment().show(getFragmentManager(), TAG_DIALOG);				
+				f = new MergeOrSwitchDialogFragment();					
 			} else {
 				// The accounts conflict, so tell the user they can only
 				// switch or cancel. 
-				new SwitchOrCancelDialogFragment().show(getFragmentManager(), TAG_DIALOG);
+				f = new SwitchOrCancelDialogFragment();
 			}
+			f.setTargetFragment(this, TAG_DIALOG_REQ);
+			f.show(getFragmentManager(), TAG_DIALOG);
 		}
-		mHandler.sendEmptyMessage(SignInClientFragmentHandler.WHAT_STATUS_CHANGE);
 	}
 	
-	public SignInUser getUser() {
-		return mUser;
-	}
+	/*
+	 * User Merging/Switching Logic
+	 */
 	
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    for(Provider provider : mProviders.values()) {
-	    	if( provider.handleOnActivityResult(requestCode, resultCode, data) ) {
-	    		return;
-	    	}
-	    }
-	}
+	public static final class MergeOrSwitchDialogFragment extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(R.string.dialog_merge_switch)
+                   .setPositiveButton(R.string.do_merge, new DialogInterface.OnClickListener() {
+                       public void onClick(DialogInterface dialog, int id) {
+                    	   ((SignInFragment)getTargetFragment()).mergeUsers();
+                       }
+                   })
+                   .setNegativeButton(R.string.do_switch, new DialogInterface.OnClickListener() {
+                       public void onClick(DialogInterface dialog, int id) {
+                    	   ((SignInFragment)getTargetFragment()).switchUsers();
+                       }
+                   });
+            return builder.create();
+        }
+    }
+    
+    public static final class SwitchOrCancelDialogFragment extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(R.string.dialog_switch_cancel)
+                   .setPositiveButton(R.string.do_switch, new DialogInterface.OnClickListener() {
+                       public void onClick(DialogInterface dialog, int id) {
+                    	   ((SignInFragment)getTargetFragment()).switchUsers();
+                       }
+                   })
+                   .setNegativeButton(R.string.do_cancel, new DialogInterface.OnClickListener() {
+                       public void onClick(DialogInterface dialog, int id) {
+                    	   ((SignInFragment)getTargetFragment()).cancelSwitch();
+                       }
+                   });
+            return builder.create();
+        }
+    }
+	
+	private void switchUsers() {
+    	mUser = mIncomingUser;
+        mIncomingUser = null;
+        mHandler.sendEmptyMessage(SignInClientFragmentHandler.WHAT_STATUS_CHANGE);
+    }
+    
+    private void mergeUsers() {
+    	mUser.merge(mIncomingUser);
+ 	   	mIncomingUser = null;
+ 	   	mHandler.sendEmptyMessage(SignInClientFragmentHandler.WHAT_STATUS_CHANGE);
+    }
+    
+    private void cancelSwitch() {
+    	mIncomingUser = null;
+    }
 }

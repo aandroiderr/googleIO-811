@@ -78,7 +78,7 @@ EOS;
     $_SESSION[self::TAG]['user'] = $user = $this->plus->people->get("me");
     $_SESSION[self::TAG]['id'] = $user['id'];
     $_SESSION[self::TAG]['name'] = $user['displayName'];
-    $this->callback->callback($_SESSION[self::TAG]);
+    $this->callback->onSignedIn($_SESSION[self::TAG]);
     return true;
   }
   
@@ -86,7 +86,7 @@ EOS;
     // Check expiry on access token. 
     if(isset($_SESSION[self::TAG]['token']) && 
       $this->checkExpiry()) {
-      $this->callback->callback($_SESSION[self::TAG]);
+      $this->callback->onSignedIn($_SESSION[self::TAG]);
       return true;
     }
     return false;

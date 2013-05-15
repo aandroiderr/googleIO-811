@@ -9,14 +9,29 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AccountChooserActivity" >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:textSize="22sp"  
+        android:gravity="center_horizontal"
+        android:text="@string/sign_in_title"
+        />
     <com.google.android.gms.common.SignInButton
         android:id="@+id/google_plus_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dip" />
+        android:layout_marginBottom="5dip" />
      <Button
         android:id="@+id/facebook_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/facebooksignin" />
+        android:text="@string/facebooksignin"
+        android:layout_marginBottom="5dip" />
+    <Button
+        android:id="@+id/linkedin_signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/linkedinsignin"
+        android:layout_marginBottom="5dip" />
 </LinearLayout>

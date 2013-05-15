@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EF64D902173B2A8C00D296A8 /* f_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EF64D901173B2A8C00D296A8 /* f_logo.png */; };
+		EF64D904173F3E1D00D296A8 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = EF64D903173F3E1D00D296A8 /* twitter.png */; };
 		EFA0E861170F231A00C58A71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA0E860170F231A00C58A71 /* UIKit.framework */; };
 		EFA0E863170F231A00C58A71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA0E862170F231A00C58A71 /* Foundation.framework */; };
 		EFA0E865170F231A00C58A71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA0E864170F231A00C58A71 /* CoreGraphics.framework */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		EF64D901173B2A8C00D296A8 /* f_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f_logo.png; sourceTree = "<group>"; };
+		EF64D903173F3E1D00D296A8 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		EFA0E85D170F231A00C58A71 /* SignInEverywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignInEverywhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA0E860170F231A00C58A71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EFA0E862170F231A00C58A71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -164,6 +166,7 @@
 		EFA0E867170F231A00C58A71 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EF64D903173F3E1D00D296A8 /* twitter.png */,
 				EF64D901173B2A8C00D296A8 /* f_logo.png */,
 				EFA0E8851711941E00C58A71 /* FacebookSDKResources.bundle */,
 				EFA0E868170F231A00C58A71 /* SignInEverywhere-Info.plist */,
@@ -360,6 +363,7 @@
 				EFD5F56617243357009E6E13 /* MainViewController.xib in Resources */,
 				EFD5F68E1739F0B1009E6E13 /* GooglePlus.bundle in Resources */,
 				EF64D902173B2A8C00D296A8 /* f_logo.png in Resources */,
+				EF64D904173F3E1D00D296A8 /* twitter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

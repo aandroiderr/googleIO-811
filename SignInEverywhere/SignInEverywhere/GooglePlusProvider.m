@@ -50,7 +50,12 @@
   return av;
 }
 
+- (BOOL)hasIdentity {
+  return self.user != nil;
+}
+
 - (void)signOut {
+  self.user = nil;
   [[GPPSignIn sharedInstance] signOut];
 }
 
@@ -63,6 +68,7 @@
 }
 
 -(void)disconnect {
+  self.user = nil;
   [[GPPSignIn sharedInstance] disconnect];
 }
 

@@ -71,7 +71,11 @@
 }
 
 - (void)disconnect {
-  // TODO:
+  [self signOut];
+}
+
+- (BOOL)hasIdentity {
+  return (FBSession.activeSession.isOpen && self.user);
 }
 
 - (void)returnUser {

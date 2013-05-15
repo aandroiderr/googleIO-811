@@ -4,9 +4,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:textSize="22sp"  
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="@string/settings_title"
+        />
     <LinearLayout
-        android:layout_marginTop="75dp"
-        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -25,7 +34,7 @@
     
     <LinearLayout
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -35,6 +44,25 @@
             android:text="Facebook" />
         <Switch
         android:id="@+id/toggle_facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="Signed In"
+    	android:textOff="Signed Out"
+    	android:onClick="onSwitched" />
+    </LinearLayout>
+    
+	<LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView 
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="LinkedIn" />
+        <Switch
+        android:id="@+id/toggle_linkedin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textOn="Signed In"

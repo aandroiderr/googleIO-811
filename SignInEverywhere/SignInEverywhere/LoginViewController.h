@@ -14,12 +14,14 @@
 
 @interface LoginViewController : UIViewController <
   UITableViewDataSource,
-  UITableViewDelegate
+  UITableViewDelegate,
+  UIAlertViewDelegate
 >
 
 - (id)initWithDelegate:(id<LoginDelegate>)delegate;
 
 @property (nonatomic,weak) id<LoginDelegate> delegate;
-@property (nonatomic, strong) IBOutlet UITableView* tableview;
+@property (nonatomic,strong) IBOutlet UITableView* tableview;
+@property (nonatomic) NSInteger selectedRow;
 
 @end

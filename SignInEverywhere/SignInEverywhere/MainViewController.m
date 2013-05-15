@@ -34,7 +34,6 @@
 }
 
 - (void) checkUser:(NSNotification *) notification {
-  // TODO: Stop spinner.
   User * u =[[Authenticator sharedAuth] user];
   NSString *who = @"Anonymous";
   if ([u isSignedIn]) {
@@ -44,7 +43,6 @@
 }
 
 - (IBAction)didTapChoose:(id)sender {
-  // TODO: Start a spinner
   LoginViewController *vc = [[LoginViewController alloc] initWithDelegate:self];
   [self.navigationController pushViewController:vc animated:YES];
 }
