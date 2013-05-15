@@ -37,23 +37,23 @@
 	    <CheckBox android:id="@+id/checkbox_graph"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Social Graph"/>
+	        android:text="@string/feature_calendar"/>
 	    <CheckBox android:id="@+id/checkbox_calendar"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Calendar"/>
+	        android:text="@string/feature_graph"/>
 	    <CheckBox android:id="@+id/checkbox_profile"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Profile Data"/>
+	        android:text="@string/feature_profile"/>
 	    <CheckBox android:id="@+id/checkbox_featurea"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Feature A"/>
+	        android:text="@string/feature_a"/>
 	    <CheckBox android:id="@+id/checkbox_featureb"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Feature B"/>
+	        android:text="@string/feature_b"/>
 </LinearLayout>
     
 </RelativeLayout>

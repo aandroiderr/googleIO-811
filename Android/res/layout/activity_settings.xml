@@ -22,13 +22,13 @@
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content" 
-            android:text="Google" />
+            android:text="@string/provider_google" />
         <Switch
         android:id="@+id/toggle_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOn="Signed In"
-    	android:textOff="Signed Out"
+        android:textOn="@string/state_signedin"
+    	android:textOff="@string/state_signedout"
     	android:onClick="onSwitched" />
     </LinearLayout>
     
@@ -41,13 +41,13 @@
         <TextView 
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="Facebook" />
+            android:text="@string/provider_facebook" />
         <Switch
         android:id="@+id/toggle_facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOn="Signed In"
-    	android:textOff="Signed Out"
+        android:textOn="@string/state_signedin"
+    	android:textOff="@string/state_signedout"
     	android:onClick="onSwitched" />
     </LinearLayout>
     
@@ -60,13 +60,40 @@
         <TextView 
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="LinkedIn" />
+            android:text="@string/provider_linkedin" />
         <Switch
         android:id="@+id/toggle_linkedin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOn="Signed In"
-    	android:textOff="Signed Out"
+        android:textOn="@string/state_signedin"
+    	android:textOff="@string/state_signedout"
     	android:onClick="onSwitched" />
+    </LinearLayout>
+    
+	<LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView 
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_disconnect" />
+        <Button 
+            android:id="@+id/disconnect_google"
+            android:text="@string/provider_google"
+            android:onClick="onDisconnect"
+            />
+        <Button 
+            android:id="@+id/disconnect_facebook"
+            android:text="@string/provider_facebook"
+            android:onClick="onDisconnect"
+            />
+        <Button 
+            android:id="@+id/disconnect_linkedin"
+            android:text="@string/provider_linkedin"
+            android:onClick="onDisconnect"
+            />
     </LinearLayout>
 </LinearLayout>

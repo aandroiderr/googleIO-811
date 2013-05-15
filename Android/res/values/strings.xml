@@ -20,4 +20,18 @@
 	<string name="dialog_switch_cancel">This sign-in is linked to a different account. Would you like to switch, or cancel and stay with the current account?</string>
 	<string name="do_cancel">Cancel</string>
 	
+	<string name="feature_graph">Social Graph</string>
+	<string name="feature_calendar">Calendar</string>
+	<string name="feature_profile">Profile Data</string>
+	<string name="feature_a">Feature A</string>
+	<string name="feature_b">Feature B</string>
+	
+	<string name="provider_google">Google</string>
+	<string name="provider_facebook">Facebook</string>
+	<string name="provider_linkedin">LinkedIn</string>
+	
+	<string name="state_signedin">Signed In</string>
+	<string name="state_signedout">Signed Out</string>
+	<string name="btn_disconnect">Disconnect</string>
+	
 </resources>
