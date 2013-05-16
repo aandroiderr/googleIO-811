@@ -31,11 +31,16 @@ class GooglePlusUser implements User {
     return false;
   }
   
+  public function signOut() {
+    $_SESSION[GooglePlus::TAG] = array();
+    $_SESSION[GooglePlus::TAG]['signedOut'] = true;
+  }
+  
   public function disconnect() {
     $token = json_decode($this->data['token']);
     $access_token = $token->access_token;
     file_get_contents(sprintf(self::REVOKE_URL, $access_token));
-    unset($_SESSION[GooglePlus::TAG]);
+    $this->signOut();
   }
 }
 
@@ -73,10 +78,23 @@ class GooglePlus implements Provider {
   public function getScript() {
     $bytes = openssl_random_pseudo_bytes(8);
     $_SESSION[self::TAG . 'state'] = $state = bin2hex($bytes);
+    if(isset($_SESSION[self::TAG]) && $_SESSION[self::TAG]['signedOut']) {
+      $additional = "
+      var signedOut = true;
+      window.___gcfg = {
+        isSignedOut: true
+      };
+      ";
+    } else {
+      $additional = "
+      var signedOut = false;
+      ";
+    }
     return <<<EOS
     <script type="text/javascript">
+    {$additional}
     function signInCallback(authResult) {
-      if (authResult['code']) {
+      if (authResult['code'] && !signedOut) {
         // Hide the sign-in button now that the user is authorized, for example:
         $('.g-signin').attr('style', 'display: none');
 
@@ -92,6 +110,10 @@ class GooglePlus implements Provider {
           data: "code="+authResult['code']+"&state={$state}"
         });
       } 
+      if(signedOut) {
+        // Allow second click.
+        signedOut = false;
+      }
     }
     </script>
 EOS;

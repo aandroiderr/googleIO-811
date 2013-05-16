@@ -116,7 +116,14 @@ public class SignInFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-	}
+	}	
+	
+	public void onDestroy() {
+		for(Provider provider : mProviders.values()) {
+			provider.detachFragment();
+		}	
+		super.onDestroy();
+	}		
 	
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);

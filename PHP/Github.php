@@ -29,8 +29,12 @@ class GithubUser implements User {
     return false;
   }
   
-  public function disconnect() {
+  public function signOut() {
     unset($_SESSION[Github::TAG]);
+  }
+  
+  public function disconnect() {
+    $this->signOut();
   }
 }
 
@@ -55,6 +59,8 @@ class Github implements Provider {
     $this->client_id = $client_id;
     $this->client_secret = $client_secret;
     $this->redirect_uri = $redir . '/github';
+    // Quick hack to set a user-agent so GH doesn't get mad at us and 403.
+    ini_set('user_agent', "OAuthPHP");
   }
   
   public function getId() {

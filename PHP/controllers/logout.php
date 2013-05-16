@@ -11,7 +11,7 @@ class LogoutController {
     if($path == "/disconnect") {
       $this->auth->getUser()->disconnect();
     }
-    $_SESSION = array();
+    $this->auth->getUser()->signOut();
     header("Location: /");
     exit;
   }
