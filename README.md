@@ -1,5 +1,4 @@
-Demonstration apps/code from my Google I/O 2013 talk "How to Offer Google+ Sign-In Alongside Other Social Sign-In Services". 
-
+Sample from 2013-05-16. Demonstration apps/code from my Google I/O 2013 talk "How to Offer Google+ Sign-In Alongside Other Social Sign-In Services". 
 
 PHP
 ----------------
