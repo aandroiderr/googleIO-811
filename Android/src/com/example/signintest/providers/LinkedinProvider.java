@@ -81,7 +81,6 @@ public class LinkedinProvider implements Provider {
 	    		editor.putString(LINKEDIN_ACCESS_TOKEN, mAccessToken.getToken());
 	    		editor.putString(LINKEDIN_ACCESS_SECRET, mAccessToken.getSecret());
 	    		editor.commit();
-	    		mIsUserAction = true;
 	            refreshUser();
 			} catch ( OAuthException e ) {  
 				e.printStackTrace();  
@@ -159,6 +158,7 @@ public class LinkedinProvider implements Provider {
 		if (path.equals(localPath)) {
 			String verifier = uri.getQueryParameter("oauth_verifier");  
 			GetTokenTask task = new GetTokenTask();
+			mIsUserAction = true;
 			task.execute(verifier);
     		return true;
 		}

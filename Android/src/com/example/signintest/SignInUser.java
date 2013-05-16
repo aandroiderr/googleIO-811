@@ -31,20 +31,19 @@ public class SignInUser {
 	 */
 	private DBAdapter mDb;
 	
+	/**
+	 * Create a sign in user. Does not take ownership of the DBAdapter.
+	 * @param db
+	 */
 	public SignInUser(DBAdapter db) {
 		mDb = db;
-		mDb.open();
 		mProviderData = new HashMap<Provider,Object>();
-	}
-	
-    protected void finalize( ) throws Throwable {
-    	mDb.close();
 	}
 	
 	public void setProviderData(Provider provider, Object user) {
 		mProviderData.put(provider, user);
 		if (mId == null) {
-			mId = mDb.getUserId(provider, getProviderUserId(provider));
+			mId = mDb.getUserId(provider, this);
 			if(mId == null) {
 				// There is no user in the DB, so create one.
 				mId = mDb.createUser(provider, this);
@@ -52,7 +51,9 @@ public class SignInUser {
 			} else {
 				mIsNew = false;
 			}
-		}	
+		} else {
+			mDb.associateUser(provider, this, mId.longValue());
+		}
 	}
 	
 	public void removeProvider(Provider provider) {

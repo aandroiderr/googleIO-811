@@ -40,7 +40,7 @@ public class DBAdapter {
 	 */
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 		public DatabaseHelper(Context context) {
-			super(context, "appdb", null, 2);
+			super(context, "appdb", null, 7);
 		}
 		
 		@Override
@@ -52,7 +52,8 @@ public class DBAdapter {
 				db.execSQL("CREATE TABLE " + IDP_TABLE + " (" +
 						KEY_PROVIDER + " VARCHAR," +
 						KEY_USER_ID + " INTEGER," +
-						KEY_PROVIDER_ID + " VARCHAR )"); 
+						KEY_PROVIDER_ID + " VARCHAR, " +
+						"PRIMARY KEY(" + KEY_PROVIDER + ", " + KEY_PROVIDER_ID + ") )"); 
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -83,20 +84,20 @@ public class DBAdapter {
 	 * @param userId
 	 * @return
 	 */
-	public Long getUserId (Provider provider, String idpUserId) {
+	public Long getUserId (Provider provider, SignInUser user) {
 		String[] projection = new String[] {
 				KEY_PROVIDER,
 				KEY_PROVIDER_ID,
 				KEY_USER_ID
 		};
 		String where = String.format("%s=? AND %s=?", KEY_PROVIDER, KEY_PROVIDER_ID);
-		Cursor cursor = mDb.query(IDP_TABLE, projection, 
-				where, new String[] {provider.getId(), idpUserId}, 
+		Cursor cursor = mDb.query(IDP_TABLE, projection,
+				where, new String[] {provider.getId(), user.getProviderUserId(provider)},
 				null, null, null, null);
 		if (cursor != null) {
 			cursor.moveToFirst();
 		}
-		return cursor.getCount() == 1 ? Long.valueOf(cursor.getLong(2)) : null;
+		return cursor.getCount() > 0 ? Long.valueOf(cursor.getLong(2)) : null;
 	}
 	
 	public ArrayList<String> getConnectedProviders(long userId) {
@@ -162,7 +163,8 @@ public class DBAdapter {
 		row.put(KEY_PROVIDER, provider.getId());
 		row.put(KEY_PROVIDER_ID, user.getProviderUserId(provider));
 		row.put(KEY_USER_ID, userId);
-		return mDb.insert(IDP_TABLE, null, row) > 0;
+		long result = mDb.insert(IDP_TABLE, null, row);
+		return result > 0;
 	}
 	
 	/**

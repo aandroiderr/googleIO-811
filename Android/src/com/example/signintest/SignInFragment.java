@@ -122,6 +122,7 @@ public class SignInFragment extends Fragment {
 		super.onAttach(activity);
 		mHandler = new SignInClientFragmentHandler(this);
 		mDb = new DBAdapter(getActivity().getApplicationContext());
+		mDb.open();
 		mProviders = new HashMap<String,Provider>();
 		addProviders(ProviderUtil.getProviders());
 	}
@@ -130,6 +131,7 @@ public class SignInFragment extends Fragment {
 		for(Provider provider : mProviders.values()) {
 			provider.detachFragment();
 		}
+		mDb.close();
 		super.onDestroy();
 	}				
 	
