@@ -137,6 +137,10 @@ public class SignInUser {
 	 * @param user
 	 */
 	public void merge(SignInUser user) {
+		// Remove the old user first to ensure the DB is clear.
+		if(user.getId() != mId) {
+			user.delete();
+		}
 		for(Provider provider : user.listConnectedProviders()) {
 			// If we have not synchronised users, we should do that.
 			if(!mProviderData.containsKey(provider)) {
@@ -147,9 +151,6 @@ public class SignInUser {
 					mProviderData.put(provider, user);
 				}
 			}
-		}
-		if(user.getId() != mId) {
-			user.delete();
 		}
 	}
 
@@ -168,7 +169,7 @@ public class SignInUser {
 		for(String name : mDb.getConnectedProviders(mId)) {
 			boolean found = false;
 			for(Provider p : listConnectedProviders()) {
-				if(p.getId() == name) {
+				if(p.getId().equals(name)) {
 					found = true;
 				}
 			}

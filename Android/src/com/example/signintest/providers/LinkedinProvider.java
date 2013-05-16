@@ -98,7 +98,7 @@ public class LinkedinProvider implements Provider {
 				OAuthRequest request = new OAuthRequest(Verb.GET, LINKEDIN_PROFILE_URL);
 				mService.signRequest(mAccessToken, request); 
 				Response response = request.send();
-				Log.i("LinkedIN", response.getBody());
+				//Log.i("LinkedIN", response.getBody());
 				StringReader sr = new StringReader(response.getBody());
 				InputSource is = new InputSource(sr);
 				try {

@@ -40,7 +40,7 @@ public class DBAdapter {
 	 */
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 		public DatabaseHelper(Context context) {
-			super(context, "appdb", null, 8);
+			super(context, "appdb", null, 9);
 		}
 		
 		@Override
