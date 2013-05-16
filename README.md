@@ -1,4 +1,4 @@
-Sample from 2013-05-16. Demonstration apps/code from my Google I/O 2013 talk "How to Offer Google+ Sign-In Alongside Other Social Sign-In Services". 
+Sample from 2013-05-16. Demonstration apps/code from Ian Barber's Google I/O 2013 talk "How to Offer Google+ Sign-In Alongside Other Social Sign-In Services".
 
 PHP
 ----------------
@@ -30,3 +30,5 @@ http://developers.facebook.com/ios/
 https://dev.twitter.com/docs/adding-social-framework
 
 You'll need to setup a Google+ client ID and a Facebook app ID in the AppDelegate.m and the SignInEverywhere-Info.plist. You'll also need to create custom URL handlers for Google+ and Facebook (see the current ones as examples).
+
+You'll also need to drop in the frameworks and bundles from the Google+ and Facebook SDKs.
