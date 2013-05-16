@@ -27,6 +27,7 @@ import android.util.Log;
 import com.example.signintest.Provider;
 import com.example.signintest.ProviderUtil;
 import com.example.signintest.ProviderUtil.Feature;
+import com.example.signintest.R;
 import com.example.signintest.SignInFragment;
 import com.example.signintest.SignInUser;
 
@@ -124,9 +125,8 @@ public class LinkedinProvider implements Provider {
 	public void setFragment(SignInFragment manager) {
 		mManager = manager;
 		mIsUserAction = false;
-		// TODO: These should clearly live somewhere else!
-		String apiKey = "yzwlgpm1ijqj";
-		String apiSecret = "IvJRIk57latNMxRy";
+		String apiKey = mManager.getActivity().getString(R.string.linkedin_api_key);
+		String apiSecret = mManager.getActivity().getString(R.string.linkedin_api_secret);
 		// Initialise the Service from Scribe.
 		mService = new ServiceBuilder()  
     	.provider(LinkedInApi.class)  

@@ -2,8 +2,9 @@
 <resources>
     <string name="app_name">Sign In Test</string>
     <string name="app_id">6397850738</string>
-    <string name="linkedin_api_key">FIXME</string>
-    <string name="linkedin_api_secret">FIXME</string>
+    <string name="linkedin_api_key">yzwlgpm1ijqj</string>
+    <string name="linkedin_api_secret">IvJRIk57latNMxRy</string>
+
     <string name="action_settings">Settings</string>
     <string name="sign_in_title">Please Sign In</string>
     <string name="settings_title">Connected Accounts</string>
