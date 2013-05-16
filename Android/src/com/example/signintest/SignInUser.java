@@ -138,9 +138,13 @@ public class SignInUser {
 	 */
 	public void merge(SignInUser user) {
 		for(Provider provider : user.listConnectedProviders()) {
-			setProviderData(provider, user.getProviderData(provider));
+			if(mProviderData.containsKey(provider)) {
+				setProviderData(provider, user.getProviderData(provider));
+			}
 		}
-		user.delete();
+		if(user.getId() != mId) {
+			user.delete();
+		}
 	}
 
 	public Set<Provider> listConnectedProviders() {

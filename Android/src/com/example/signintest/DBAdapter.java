@@ -90,7 +90,7 @@ public class DBAdapter {
 				KEY_PROVIDER_ID,
 				KEY_USER_ID
 		};
-		String where = String.format("%s=? AND %s=?", KEY_PROVIDER, KEY_PROVIDER_ID);
+		String where = String.format("%s=? and %s=?", KEY_PROVIDER, KEY_PROVIDER_ID);
 		Cursor cursor = mDb.query(IDP_TABLE, projection,
 				where, new String[] {provider.getId(), user.getProviderUserId(provider)},
 				null, null, null, null);
