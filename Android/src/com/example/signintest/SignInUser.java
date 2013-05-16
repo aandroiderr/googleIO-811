@@ -138,8 +138,14 @@ public class SignInUser {
 	 */
 	public void merge(SignInUser user) {
 		for(Provider provider : user.listConnectedProviders()) {
-			if(mProviderData.containsKey(provider)) {
-				setProviderData(provider, user.getProviderData(provider));
+			// If we have not synchronised users, we should do that.
+			if(!mProviderData.containsKey(provider)) {
+				// If we have already sychronised, then only update DB if the user differs.
+				if(user.getId() != mId) {
+					setProviderData(provider, user.getProviderData(provider));
+				} else {
+					mProviderData.put(provider, user);
+				}
 			}
 		}
 		if(user.getId() != mId) {

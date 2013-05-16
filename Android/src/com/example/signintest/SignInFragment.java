@@ -125,15 +125,7 @@ public class SignInFragment extends Fragment {
 		mDb.open();
 		mProviders = new HashMap<String,Provider>();
 		addProviders(ProviderUtil.getProviders());
-	}
-	
-	public void onDestroy() {
-		for(Provider provider : mProviders.values()) {
-			provider.detachFragment();
-		}
-		mDb.close();
-		super.onDestroy();
-	}				
+	}		
 	
 	/**
 	 * Return a sign in user built with the current database, 
@@ -174,6 +166,7 @@ public class SignInFragment extends Fragment {
 		Provider p = mProviders.get(provider);
 		p.disconnect(mUser);
 		mUser.removeProvider(p);
+		mHandler.sendEmptyMessage(SignInClientFragmentHandler.WHAT_STATUS_CHANGE);
 	}
 	
 	public SignInUser getUser() {
