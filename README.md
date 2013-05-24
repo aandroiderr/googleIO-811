@@ -1,4 +1,4 @@
-Sample from 2013-05-16. Demonstration apps/code from Ian Barber's Google I/O 2013 talk "How to Offer Google+ Sign-In Alongside Other Social Sign-In Services".
+Sample from 2013-05-16. Demonstration apps/code from Ian Barber's Google I/O 2013 talk "How to Offer Google+ Sign-In Alongside Other Social Sign-In Services": http://www.youtube.com/watch?v=N_mofJwgtJ4
 
 PHP
 ----------------
